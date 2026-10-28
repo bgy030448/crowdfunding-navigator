@@ -1,0 +1,45 @@
+{
+  "run_id": "20261028T061654Z",
+  "model": "RandomForest",
+  "selected_candidate": "rf_t100_d12_l5",
+  "metrics": {
+    "accuracy": 0.7451268357810414,
+    "precision_failure": 0.22710280373831776,
+    "recall_failure": 0.6558704453441295,
+    "f1_failure": 0.33738285317598055,
+    "precision_success": 0.9523364485981308,
+    "recall_success": 0.7549266558008594,
+    "f1_success": 0.8422183651541449,
+    "macro_f1": 0.5898006091650627,
+    "support_failure": 741,
+    "support_success": 6749
+  },
+  "confusion_matrix": [
+    [
+      486,
+      255
+    ],
+    [
+      1654,
+      5095
+    ]
+  ],
+  "confusion_matrix_order": [
+    "failure(0)",
+    "success(1)"
+  ],
+  "baseline_all_success": {
+    "accuracy": 0.901068090787717,
+    "precision_failure": 0.0,
+    "recall_failure": 0.0,
+    "f1_failure": 0.0,
+    "precision_success": 0.901068090787717,
+    "recall_success": 1.0,
+    "f1_success": 0.9479598286396517,
+    "macro_f1": 0.47397991431982583,
+    "support_failure": 741,
+    "support_success": 6749
+  },
+  "probability_note": "미보정 모델 점수. 국내 실제 성공확률이 아님.",
+  "known_test_reuse": true
+}

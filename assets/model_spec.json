@@ -1,0 +1,287 @@
+{
+  "run_id": "20261028T061654Z",
+  "problem": "binary classification",
+  "model": "RandomForest",
+  "active_features": [
+    "goal_native",
+    "currency",
+    "country",
+    "category_group",
+    "duration_days"
+  ],
+  "required_input_columns": [
+    "goal_native",
+    "currency",
+    "country",
+    "category_group",
+    "duration_days"
+  ],
+  "target": "success",
+  "known_categories": [
+    "animation",
+    "art",
+    "comics",
+    "crafts",
+    "dance",
+    "design",
+    "film_video",
+    "games",
+    "journalism",
+    "music",
+    "photography",
+    "publishing",
+    "theater"
+  ],
+  "known_currencies": [
+    "AUD",
+    "CAD",
+    "CHF",
+    "DKK",
+    "EUR",
+    "GBP",
+    "HKD",
+    "JPY",
+    "MXN",
+    "NOK",
+    "NZD",
+    "PLN",
+    "SEK",
+    "SGD",
+    "USD"
+  ],
+  "known_countries": [
+    "AT",
+    "AU",
+    "BE",
+    "CA",
+    "CH",
+    "DE",
+    "DK",
+    "ES",
+    "FR",
+    "GB",
+    "GR",
+    "HK",
+    "IE",
+    "IT",
+    "JP",
+    "LU",
+    "MX",
+    "NL",
+    "NO",
+    "NZ",
+    "PL",
+    "SE",
+    "SG",
+    "SI",
+    "US"
+  ],
+  "observed_country_currency_pairs": [
+    [
+      "AT",
+      "EUR"
+    ],
+    [
+      "AU",
+      "AUD"
+    ],
+    [
+      "BE",
+      "EUR"
+    ],
+    [
+      "CA",
+      "CAD"
+    ],
+    [
+      "CH",
+      "CHF"
+    ],
+    [
+      "CH",
+      "EUR"
+    ],
+    [
+      "DE",
+      "EUR"
+    ],
+    [
+      "DK",
+      "DKK"
+    ],
+    [
+      "DK",
+      "EUR"
+    ],
+    [
+      "ES",
+      "EUR"
+    ],
+    [
+      "FR",
+      "EUR"
+    ],
+    [
+      "GB",
+      "GBP"
+    ],
+    [
+      "GR",
+      "EUR"
+    ],
+    [
+      "HK",
+      "HKD"
+    ],
+    [
+      "IE",
+      "EUR"
+    ],
+    [
+      "IT",
+      "EUR"
+    ],
+    [
+      "JP",
+      "JPY"
+    ],
+    [
+      "LU",
+      "EUR"
+    ],
+    [
+      "MX",
+      "MXN"
+    ],
+    [
+      "NL",
+      "EUR"
+    ],
+    [
+      "NO",
+      "EUR"
+    ],
+    [
+      "NO",
+      "NOK"
+    ],
+    [
+      "NZ",
+      "NZD"
+    ],
+    [
+      "PL",
+      "EUR"
+    ],
+    [
+      "PL",
+      "PLN"
+    ],
+    [
+      "SE",
+      "EUR"
+    ],
+    [
+      "SE",
+      "SEK"
+    ],
+    [
+      "SG",
+      "SGD"
+    ],
+    [
+      "SI",
+      "EUR"
+    ],
+    [
+      "US",
+      "USD"
+    ]
+  ],
+  "training_goal_ranges_by_currency": {
+    "AUD": {
+      "min": 30.0,
+      "max": 10000000.0
+    },
+    "CAD": {
+      "min": 1.0,
+      "max": 1200000.0
+    },
+    "CHF": {
+      "min": 100.0,
+      "max": 170000.0
+    },
+    "DKK": {
+      "min": 700.0,
+      "max": 185200.0
+    },
+    "EUR": {
+      "min": 1.0,
+      "max": 3000000.0
+    },
+    "GBP": {
+      "min": 1.0,
+      "max": 220000.0
+    },
+    "HKD": {
+      "min": 100.0,
+      "max": 994800.0
+    },
+    "JPY": {
+      "min": 300.0,
+      "max": 20000000.0
+    },
+    "MXN": {
+      "min": 200.0,
+      "max": 5291100.0
+    },
+    "NOK": {
+      "min": 2000.0,
+      "max": 470000.0
+    },
+    "NZD": {
+      "min": 75.0,
+      "max": 180000.0
+    },
+    "PLN": {
+      "min": 300.0,
+      "max": 87800.0
+    },
+    "SEK": {
+      "min": 1498.0,
+      "max": 750000.0
+    },
+    "SGD": {
+      "min": 20.0,
+      "max": 177000.0
+    },
+    "USD": {
+      "min": 1.0,
+      "max": 60000000.0
+    }
+  },
+  "training_duration_range": [
+    1.0,
+    60.04166667
+  ],
+  "model_sha256": "7f580d5539d9df676a4580075c2292e58fb97eed94da917b1b8bae162185b350",
+  "selected_candidate": "rf_t100_d12_l5",
+  "parameters": {
+    "n_estimators": 100,
+    "max_depth": 12,
+    "min_samples_leaf": 5
+  },
+  "validation_macro_f1": 0.6293594092192094,
+  "versions": {
+    "python": "3.12.14",
+    "sklearn": "1.9.1",
+    "pandas": "3.1.0",
+    "numpy": "2.5.4",
+    "joblib": "1.6.0"
+  },
+  "source": "https://webrobots.io/kickstarter-datasets/",
+  "snapshot_date": "2026-10-12",
+  "domestic_probability_validated": false,
+  "probability_calibration_performed": false,
+  "known_test_reuse": true
+}
