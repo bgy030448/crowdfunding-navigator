@@ -198,21 +198,24 @@ def prediction_view():
     st.markdown(f'<p class="result-label{tone}">{result["predicted_label"]}</p>', unsafe_allow_html=True)
     st.caption(f"{CATEGORIES[x['category_group']]} · 목표금액 {result['entered_goal']:,.0f} {result['entered_currency']} · {x['duration_days']:g}일")
     a, b = st.columns(2)
-    a.metric('성공 점수', f"{result['success_score']:.1%}")
+    a.metric('성공 점수', f"{result['success_score']:.1%}", help='모델이 성공 쪽으로 판단한 정도입니다. 실제 성공확률이나 조건 변경의 개선 효과를 뜻하지 않습니다.')
     b.metric('목표 미달 점수', f"{result['failure_score']:.1%}")
     st.progress(result['success_score'])
     if result['input_mode'] == 'krw':
         st.caption(f"비교 기준: 미국 · {x['goal_native']:,.2f} USD · 가정 환율 1 USD = {result['assumed_krw_per_usd']:,.0f}원")
     st.info('해외 자료로 학습한 모델의 참고 점수입니다. 국내 실제 성공확률이나 프로젝트 성공을 보장하는 값은 아닙니다.')
-    with st.expander('목표금액·기간을 바꾸어 비교'):
+    with st.expander('조건별 모델 점수 비교 · 추천 아님'):
+        st.info('이 표는 입력 조건에 따른 모델 점수 비교입니다. 성공률을 높이는 방법이나 최적의 모금 기간을 추천하지 않습니다.')
         rows = scenarios(result)
-        st.dataframe(rows[['계획','목표금액','통화','기간(일)','성공 점수','분류','안내']], hide_index=True, width='stretch', column_config={
+        st.dataframe(rows[['계획','목표금액','통화','기간(일)','성공 점수','분류','안내']].rename(columns={'계획':'비교 조건'}), hide_index=True, width='stretch', column_config={
             '목표금액':st.column_config.NumberColumn(format='localized'),
             '성공 점수':st.column_config.ProgressColumn(min_value=0,max_value=1,format='percent')})
-        st.caption('같은 모델에 입력 조건만 바꾼 결과입니다. 실제 성공률 개선 효과를 입증하지 않습니다.')
+        st.markdown('**기간을 늘렸는데 점수가 낮아질 수도 있나요?**')
+        st.write('네. 모델은 과거 프로젝트의 분야·금액·기간과 결과를 함께 배웠습니다. 긴 기간과 실패가 함께 나타난 패턴을 배우면, 금액이 같아도 기간을 늘렸을 때 점수가 낮아질 수 있습니다. 기간과 점수가 일정하게 비례하지는 않습니다.')
+        st.write('같은 프로젝트를 기간만 바꾸어 실제로 진행한 실험은 아닙니다. 따라서 기간을 줄이거나 늘리면 실제 성공률이 달라진다는 뜻이 아니며, 점수가 가장 높은 조건을 최적의 계획으로 해석하면 안 됩니다.')
     with st.expander('예측 결과 안내'):
         st.write('성공은 모금 목표 달성, 실패는 목표 미달입니다. 성공 점수가 50%를 넘으면 성공으로 분류합니다. 점수가 같은 경우 실패로 분류합니다.')
-        st.write('여러 결정트리의 결과를 종합하는 랜덤포레스트를 사용합니다. 점수는 실제 성공률에 맞춰 보정한 값이 아닙니다.')
+        st.write('여러 결정트리의 결과를 종합하는 랜덤포레스트를 사용합니다. 점수는 실제 성공률에 맞춰 보정한 값이 아닙니다. 조건 비교는 과거 자료에서 배운 패턴에 따른 점수 변화이며, 실제 성공률을 높이는 방법을 추천하는 기능은 아닙니다.')
         st.write('목표 미달 점수는 1에서 성공 점수를 뺀 값입니다. 작품의 완성도·제작 지연·배송·수익 위험은 평가하지 않습니다.')
     st.download_button('예측 결과 저장', json.dumps(result, ensure_ascii=False, indent=2).encode('utf-8'), 'mogum_prediction.json', 'application/json', key='download_result')
 
